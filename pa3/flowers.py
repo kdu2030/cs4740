@@ -2,14 +2,6 @@ from typing import Dict, List, Union, Tuple
 from mrjob.job import MRJob
 from mrjob.protocol import TextValueProtocol
 
-def get_line_data(line: str) -> Dict[str, int]:
-    data = line.split(",")
-    columns = ["sepal_length", "sepal_width", "petal_length", "petal_width", "class"]
-    flower_data = {}
-    for i, data_pt in enumerate(data):
-        flower_data[columns[i]] = data_pt
-    return flower_data
-
 class MRFlowerData(MRJob):
 
     def mapper(self, _: None, line: str):
@@ -68,7 +60,6 @@ class MRFlowerData(MRJob):
 
 
 def main():
-    #print(get_line_data("5.1,3.5,1.4,0.2,Iris-setosa"))
     MRFlowerData.run()
 
 if __name__ == "__main__":
